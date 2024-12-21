@@ -29,11 +29,20 @@ set (CMAKE_PROJECT_VERSION_MAJOR ${GTSAM_VERSION_MAJOR})
 set (CMAKE_PROJECT_VERSION_MINOR ${GTSAM_VERSION_MINOR})
 set (CMAKE_PROJECT_VERSION_PATCH ${GTSAM_VERSION_PATCH})
 
+
+# GJ --------------------------------------
 if(MSVC) 
     # Visual Studio 编译器的选项,/O2用于优化，/W3用于警告，/MP用于多线程
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2 /MP4")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_RELEASE} /MP4")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MP2")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_RELEASE} /MP2")
 endif()
+add_definitions(-DROOT_DIR="${CMAKE_CURRENT_SOURCE_DIR}/")
+# 设置库输出路径
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/lib/")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/lib/")
+# 可执行文件和dll动态链接库输出路径
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin/")
+# GJ --------------------------------------
 
 ###############################################################################
 # Gather information, perform checks, set defaults
